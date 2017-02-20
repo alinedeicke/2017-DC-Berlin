@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>From E19 to MATCH and MERGE. Mapping the CIDOC CRM to graph databases as an environment for archaeological network research</title>
+
+    <!-- meta information -->
+    <meta name="author" content="Aline Deicke" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- favicons -->
+    <link rel="shortcut icon" href="resources/img/favicon.png" />
+    <link rel="apple-touch-icon" href="resources/img/apple-touch-icon.png" />
+
+    <!-- CSS reset and grid -->
+    <link href="vendor/normalize/normalize-4.1.1.css" rel="stylesheet" />
+    <link href="vendor/skeleton/skeleton-2.0.4.css" rel="stylesheet" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,600italic,400italic,700italic,800,800italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+
+    <!-- styles for included libraries -->
+
+    <!-- chartist -->
+    <link rel="stylesheet" href="vendor/chartist/chartist.min-0.9.7.css" />
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css" />
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="vendor/highlight/styles/default.css" />
+    <link rel="stylesheet" href="resources/css/hljs.linenumbering.css" />
+
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup-1.1.0.css" />
+
+    <!-- standard presentation styles -->
+    <link href="resources/css/style.css" rel="stylesheet" />
+
+    <!-- custom presentation styles -->
+    <link href="resources/css/custom.css" rel="stylesheet" />
+
+    <!-- js needed in head -->
+
+    <!-- greuler -->
+    <script src="vendor/d3/d3-3.5.6.js"></script>
+    <script src="vendor/cola/cola.v3.min.js"></script>
+    <script src="vendor/greuler/greuler-0.5.5.min.js"></script>
+
+    <!-- html5 dataset shim for IE -->
+    <script src="vendor/impress/html5-dataset.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <div class="fallback-message">
+        <p>
+            Your browser <strong>doesn't support the features required</strong> by impress.mod.js,
+            so you are presented with a simplified version of this presentation.
+        </p>
+        <p>
+            For the best experience please use the latest <strong>Chrome</strong>, <strong>Safari</strong>
+            or <strong>Firefox</strong> browser.
+        </p>
+    </div>
+
+    <div id="impress">
+
+        <div class="step">
+            <h4><strong>21.02.2017</strong> | <a href="http://de.digitalclassicist.org/berlin/">Digital Classicist Berlin</a></h4>
+            <h4 class="up-10">Freie Universität Berlin, Topoi Building Dahlem</h4>
+
+            <h1 class="down-100" style="font-size: 70px">From E19 to MATCH and MERGE</h1>
+
+            <h2 class="red up-10">Mapping the CIDOC CRM to graph databases as an environment for archaeological network research</h2>
+
+            <h4 class="down-100">
+                <strong>Slides:</strong>
+                <a href="#" title="View the presentation online">
+                    Link <!-- TODO -->
+                </a>
+            </h4>
+
+            <h5>
+                <strong><a href="http://www.adwmainz.de/mitarbeiter/profil/aline-deicke.html">Aline Deicke</a></strong> |
+                <img src="resources/img/Twitter_bird_logo_2012.svg" alt="Twitter" class="twitter-icon" />
+                <a href="https://twitter.com/digicademy" title="Digital Academy on Twitter">@digicademy</a> |
+                <img src="resources/img/Octicons-mark-github.svg" alt="Twitter" class="gh-icon" />
+                <a href="https://github.com/digicademy/" title="Digital Academy on GitHub">digicademy</a> |
+                <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+            </h5>
+        </div>
+
+        <div class="step">
+            <h2>Table of Contents</h2>
+            <ol class="line-height-one-five">
+                <li>Formation of elite identity in the Late Urnfield Culture</li>
+                <li>CIDOC CRM-based graph databases
+                    <ol>
+                        <li>Graph databases</li>
+                        <li>The CIDOC CRM</li>
+                        <li>Data model</li>
+                    </ol>
+                </li>
+                <li>Graph databases and archaeological network analysis</li>
+                <li>Outlook and Conclusion</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h1 class="red">01</h1>
+            <h2 class="line-height-one-five">
+	            Formation of Elite Identity in the Late Urnfield Culture
+            </h2>
+	        <h3 class="red" style="text-transform: uppercase; letter-spacing: 0.3px; margin-top: -10px">As reflected by funeral status representation</h3>
+        </div>
+
+        <div class="step">
+            <h2 style="font-size: 38px">Elite Burials of the Late Urnfield Culture</h2>
+
+	        <figure class="mfp-lightbox" style="width: 80%; margin: 0 auto">
+		        <a href="resources/img/Map.png">
+			        <img src="resources/img/Map.png">
+		        </a>
+	        </figure>
+        </div>
+
+        <div class="step">
+	        <h2>Example: Chavéria, tumulus IX, and Künzing, grave 3</h2>
+
+	        <div class="row">
+		        <div class="six columns">
+			        <figure class="mfp-lightbox">
+				        <a href="resources/img/F_Chaveria_IX_gerdsen.png">
+					        <img src="resources/img/F_Chaveria_IX_gerdsen.png">
+				        </a>
+				        <figcaption>Tumulus IX of Chavéria, „Aux Massetes“, Dép. Jura (H. Gerdsen, Bemerkungen zum Tumulus IX der Nekropole von Chavéria [Franche-Comté]. Germania 60, 1982, 555 Abb. 1 B; 558 Abb. 2 B)</figcaption>
+			        </figure>
+		        </div>
+
+		        <div class="five columns offset-by-one">
+			        <figure class="mfp-lightbox">
+				        <a href="resources/img/D_Kuenzing_3_schopper.png">
+					        <img src="resources/img/D_Kuenzing_3_schopper.png" style="width: 85%">
+				        </a>
+				        <figcaption>Grave 3 of Künzing, Lkr. Deggendorf, Lower Bavaria (F. Schopper, Das urnenfelder- und hallstattzeitliche Gräberfeld von Künzing, Lkr. Deggendorf [Niederbayern]. Mat. Bronzezeit Bayern 1 [Regensburg 1995] Taf. 3)</figcaption>
+			        </figure>
+		        </div>
+	        </div>
+        </div>
+
+	    <div class="step">
+	        <div class="row">
+
+		        <div class="six columns">
+			        <h2>Network analysis</h2>
+
+			        <ul class="medium">
+				        <li>Status and identity as relational concepts</li>
+				        <li>Main network analyzed: Unweighted, undirected 2-mode-network consisting of graves and object types contained in those graves</li>
+				        <li>Other networks: One-mode projections; other relations, e.g. cultural affiliation of graves and object types or material of objects</li>
+			        </ul>
+		        </div>
+
+		        <div class="six columns">
+			        <figure class="mfp-lightbox">
+				        <a href="resources/img/2017-02-19_ObjGraves.png">
+					        <img src="resources/img/2017-02-19_ObjGraves.png">
+				        </a>
+				        <figcaption>Preliminary network visualization: Graves (mint) and object types (lilac). Layout: Spring embedder, adjusted.</figcaption>
+			        </figure>
+		        </div>
+
+	        </div>
+	    </div>
+
+	    <div class="step">
+		    <h2>Challenges of archaeological network analysis</h2>
+
+		    <ul>
+			    <li>Complex data:
+				    <ul>
+					    <li>Analyses built upon already existing, detailed data sets</li>
+					    <li>Data allows for a wide range of thematical subjects and thus, study designs</li>
+				    </ul>
+			    </li>
+			    <li>Complex network structures:
+				    <ul>
+					    <li>Two-mode- or multi-mode-networks</li>
+					    <li>Multiple types of relationships</li>
+					    <li>Multiple networks in one study</li>
+					    <li>...</li>
+				    </ul>
+			    </li>
+		    </ul>
+	    </div>
+
+	    <div class="step">
+		    <h1 class="red">02</h1>
+		    <h2 class="line-height-one-five">CIDOC CRM-based graph databases</h2>
+	    </div>
+
+	    <div class="step">
+		    <h2>Graph databases</h2>
+
+		    <div class="row">
+			    <div class="six columns">
+				    <blockquote>"[A] graph database is a database that uses <span class="red">graph structures</span> for semantic queries with nodes, edges and properties to represent and store data." (<a href="https://en.wikipedia.org/wiki/Graph_database">Wikipedia, Graph database</a>)</blockquote>
+
+				    <p class="down-25">Property graph data model:</p>
+				    <ul>
+					    <li>Nodes</li>
+					    <li>Edges</li>
+					    <li>Labels</li>
+					    <li>Attributes</li>
+				    </ul>
+			    </div>
+
+			    <div class="six columns">
+				    <figure class="mfp-lightbox">
+					    <a href="resources/img/property_graph_model.png">
+						    <img src="resources/img/property_graph_model.png">
+					    </a>
+					    <figcaption class="x-small"><a href="https://neo4j.com/developer/graph-database/#property-graph">Labeled property graph data model</a></figcaption>
+				    </figure>
+			    </div>
+		    </div>
+	    </div>
+
+	    <div class="step">
+		    <h2>Graph databases</h2>
+
+		    <div class="row">
+
+			    <div class="six columns">
+				    <ul>
+					    <li>High performance for querying chains of connections</li>
+					    <li>Flexible data model that can be easily extended</li>
+					    <li>Storing of data as nodes and edges introduces relationship-based thinking already in the early stages of data preparation and acquisition</li>
+					    <li>Network analysis capacities are available for some graph databases (e.g. <a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures">APOC</a> for Neo4j) but <strong>not</strong> a native network analysis tool</li>
+				    </ul>
+			    </div>
+
+			    <div class="six columns">
+				    <figure class="mfp-lightbox">
+					    <a href="resources/img/Neo4j_backend.png">
+						    <img src="resources/img/Neo4j_backend.png">
+					    </a>
+					    <figcaption class="x-small"><a href="http://neo4j.com/">Neo4j</a> backend with exemplary data</figcaption>
+				    </figure>
+			    </div>
+
+		    </div>
+	    </div>
+
+	    <div class="step">
+		    <h2>The CIDOC CRM</h2>
+		    <ul>
+			    <li>Internationally recognized standard for the description of concepts from the field of cultural heritage</li>
+			    <li>Developed by the <a href="http://network.icom.museum/cidoc/">Documentation Standards Group (CIDOC)</a> of the <a href="http://icom.museum/">International Council of Museums (ICOM)</a>
+			    </li>
+			    <li>2000-2006: Development into ISO standard (<a href="http://www.iso.org/iso/catalogue_detail?csnumber=57832">ISO 21127</a>)</li>
+			    <li>Last official release: <a href="http://new.cidoc-crm.org/get-last-official-release">Version 5.0.4</a></li>
+			    <li>Extended and compatible models, e.g. <a href="https://crmeh.wordpress.com/">CIDOC CRM-EH</a> or <a href="http://www.cidoc-crm.org/crmarchaeo/">CRMarchaeo</a> </li>
+			    <li>RDF implementation: <a href="http://erlangen-crm.org/">Erlangen CRM / OWL</a> </li>
+			    <li class="down-25">Modeling data after a commonly used ontology and publication of well-structured data facilitates discussion about and sharing of research data</li>
+		    </ul>
+	    </div>
+
+	    <div class="step">
+		    <h2>The CIDOC CRM</h2>
+
+		    <figure class="mfp-lightbox" style="width: 60%">
+			    <a href="resources/img/cidocPropertiesEntities.png">
+				    <img src="resources/img/cidocPropertiesEntities.png">
+			    </a>
+			    <figcaption>Properties and entities of the CRM (<a href="http://new.cidoc-crm.org/sites/default/files/cidoc_crm_version_5.0.4.pdf">Version 5.0.4</a>)</figcaption>
+		    </figure>
+
+		    <pre class="down-50 substep"><code>(:Domain)-[:PROPERTY]->(:Range)</code></pre>
+	    </div>
+
+	    <div class="step">
+		    <h2>Data model</h2>
+
+		    <div class="row">
+			    <div class="four columns">
+				    <ul class="small">
+					    <li>Context-based rather than event-based</li>
+					    <li>Focus on documenting archaeological research process</li>
+					    <li>Structure depended on research questions and requirements</li>
+					    <li>Some shortcuts/entities or properties as attributes, but in a way that can be returned to original definition of CRM</li>
+				    </ul>
+			    </div>
+			    <div class="eight columns">
+				    <figure class="mfp-lightbox">
+					    <a href="resources/img/AT_datamodel.png">
+						    <img src="resources/img/AT_datamodel.png">
+					    </a>
+				    </figure>
+			    </div>
+		    </div>
+	    </div>
+
+	    <div class="step">
+		    <h2>Data model: Example</h2>
+
+		    <figure class="mfp-lightbox" style="width: 80%">
+			    <a href="resources/img/AT_implementation_example.png">
+				    <img src="resources/img/AT_implementation_example.png">
+			    </a>
+			    <figcaption>Part of an exemplary mapping of grave A of Künzing</figcaption>
+		    </figure>
+	    </div>
+
+	    <div class="step">
+		    <h1 class="red">03</h1>
+		    <h2 class="line-height-one-five">Graph databases and archaeological network analysis</h2>
+	    </div>
+
+	    <div class="step">
+		    <h2>Workflow</h2>
+
+		    <uL>
+			    <li>Some analysis possible in graph database, especially in cases where measure not included in commonly available network analysis software (e.g. two-mode clustering, 2-N-degree, etc.)</li>
+			    <li>Otherwise, and also for visualization, export of edges and node lists and import in network analysis software</li>
+			    <li>Export formats Neo4j: csv, json, graphML using <a href="https://github.com/jexp/neo4j-shell-tools">neo4j-shell-tools</a> </li>
+		    </uL>
+	    </div>
+
+	    <div class="step">
+		    <h2>Querying and exporting data</h2>
+
+		    <p>Example network: Relations between object types and object materials</p>
+
+		    <figure class="mfp-lightbox substep down-50">
+			    <a href="resources/img/datamodel_objectMaterial.png">
+				    <img src="resources/img/datamodel_objectMaterial.png">
+			    </a>
+			    <figcaption>Part of the data model detailing object type and material</figcaption>
+		    </figure>
+
+		    <div class="substep">
+		        <p class="down-25">Path in data model:</p>
+				<pre class="up-10"><code>(:E55_Type:Object)<-[:P2_HAS_TYPE]-(:E22_ManMadeObject)-[:P45_CONSISTS_OF]->
+(:E57_Material)</code></pre>
+		    </div>
+	    </div>
+
+	    <div class="step">
+		    <h2>Querying and exporting data</h2>
+
+		    <figure class="mfp-lightbox">
+			    <a href="resources/img/Neo4j_objectsMaterial.png">
+				    <img src="resources/img/Neo4j_objectsMaterial.png">
+			    </a>
+			    <figcaption>Visualization in the Neo4j backend (3-Mode)</figcaption>
+		    </figure>
+	    </div>
+
+	    <div class="step">
+		    <h2>Querying and exporting data</h2>
+
+		    <figure class="mfp-lightbox">
+			    <a href="resources/img/Neo4j_objectsMaterialRows.png">
+				    <img src="resources/img/Neo4j_objectsMaterialRows.png">
+			    </a>
+			    <figcaption>Row view in the Neo4j backend (2-Mode)</figcaption>
+		    </figure>
+	    </div>
+
+	    <div class="step">
+		    <h2>Import and Visualization (<a href="http://visone.info/">Visone</a>)</h2>
+		    <figure class="mfp-lightbox">
+			    <a href="resources/img/visoneVisualization.svg">
+				    <img src="resources/img/visoneVisualization.svg">
+			    </a>
+			    <figcaption>Visualization of the weighted two-mode network of object types (red) and materials (green). Layout: Visone default, adjusted.</figcaption>
+		    </figure>
+	    </div>
+
+	    <div class="step">
+		    <h1 class="red">04</h1>
+		    <h2 class="line-height-one-five">Outlook and Conclusion</h2>
+	    </div>
+
+	    <div class="step">
+		    <h2>Outlook</h2>
+
+		    <ul>
+			    <li>Adaptation and transfer of the model to other use cases</li>
+			    <li>Further efforts at refining the model, e.g.: positioning of objects in relation to each other, exploration of more complicated patterns of deposition, etc.</li>
+		    </ul>
+
+		    <h2>Conclusion</h2>
+
+		    <ul>
+			    <li>The challenges of archaeological network analysis require an appropriate way of storing and querying data to grasp the whole complexity and interactions of the source material</li>
+			    <li>Through their structure, graph databases introduce relationship-based thinking already in the beginning of network research projects</li>
+			    <li>Modeling databases after a standard ontology like the CIDOC CRM facilitates sharing of and discussion about data</li>
+			    <li>CIDOC CRM-based graph databases
+			        <ul>
+				        <li>help avoid theoretical and methodological breaks during conception and analysis</li>
+				        <li>facilitate understanding and querying of complex archaeological source material</li>
+			        </ul>
+			    </li>
+		    </ul>
+	    </div>
+
+        <div class="step">
+            <div class="centered">
+                <h1>T H A N K&nbsp;&nbsp;&nbsp;Y O U</h1>
+                <h2>for your attention</h2>
+            </div>
+        </div>
+
+        <div class="step">
+
+            <h2>Literature &amp; Software</h2>
+
+            <div class="row down-50">
+	            <div class="six columns">
+		            <ul>
+			            <li>
+				            <a href="http://new.cidoc-crm.org/get-last-official-release">CIDOC CRM Version 5.0.4</a>
+			            </li>
+			            <li><a href="http://neo4j.com/">Neo4j</a></li>
+			            <li><a href="http://visone.info/">Visone</a></li>
+		            </ul>
+	            </div>
+	            <div class="six columns">
+		            <ul>
+			            <li><a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures">APOC</a></li>
+			            <li><a href="https://github.com/apcj/arrows">arrows</a></li>
+			            <li><a href="https://github.com/jexp/neo4j-shell-tools">neo4j-shell-tools</a></li>
+		            </ul>
+	            </div>
+            </div>
+
+            <p class="down-50"><a href="#"><!-- TODO --> </a> | <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>, Aline Deicke</p>
+        </div>
+
+    </div>
+
+    <!-- jquery -->
+    <script src="vendor/jquery/jquery-1.11.0.min.js"></script>
+
+    <!-- chartist -->
+    <script src="vendor/chartist/chartist.min-0.9.7.js"></script>
+    <script src="resources/js/chartist.charts.js"></script>
+
+    <!-- codemirror -->
+    <script src="vendor/codemirror/lib/codemirror.js"></script>
+    <script src="vendor/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="vendor/codemirror/mode/sparql/sparql.js"></script>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("sparql"), {
+            mode: "application/sparql-query",
+            matchBrackets: true,
+            lineNumbers: true,
+            viewportMargin: Infinity
+        });
+    </script>
+
+    <!-- highlight -->
+    <script src="vendor/highlight/highlight.pack-9.3.0.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="resources/js/hljs.linenumbering.js"></script>
+
+    <!-- magnific popup -->
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min-1.1.0.js"></script>
+    <script src="resources/js/magnific-popup.lightbox.js"></script>
+
+    <!-- impress.mod.js -->
+    <script src="vendor/impress/impress.fork.js"></script>
+    <script src="vendor/impress/impress-slidenum.js"></script>
+    <script>
+        var obj = impress();
+        obj.init();
+        initSlideNo(obj);
+    </script>
+
+</body>
+</html>
